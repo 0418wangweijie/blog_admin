@@ -17,7 +17,7 @@ function ArticleList(props) {
         axios({
             url: servicePath.getArticle,
             method: "GET",
-            withCredentials: true
+            // withCredentials: true
         }).then(
             res => {
                 setList(res.data.data)
@@ -27,7 +27,7 @@ function ArticleList(props) {
         axios({
             url: servicePath.getType,
             method: "GET",
-            withCredentials: true
+            // withCredentials: true
         }).then(
             res => {
                 setType(res.data.data)
@@ -36,9 +36,9 @@ function ArticleList(props) {
     }
     const onDeleteConfirm = async (id) => {
         console.log(id)
-
+        // , { withCredentials: true }
         try {
-            const response = await axios(servicePath.deleteArticle + id, { withCredentials: true })
+            const response = await axios(servicePath.deleteArticle + id)
             console.log(response)
             if (response.data?.success) {
                 message.success('删除成功')

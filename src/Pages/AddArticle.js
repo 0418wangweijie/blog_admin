@@ -69,6 +69,7 @@ function AddArticle(props) {
     }
 
     const changeCreateTime = (date, dateString) => {
+        console.log(dateString)
         setShowDate(dateString)
     }
 
@@ -86,10 +87,11 @@ function AddArticle(props) {
             setIntroducemd(values.introduce)
             let htmlIntroduce = marked(values.introduce);
             setIntroducehtml(htmlIntroduce)
+            console.log(values.createTime)
             setShowDate(moment(values.createTime))
         }
     }
-
+    console.log(showDate)
     const saveArticle = () => {
         setIsLoading(true)
         if (!selectedType) {
@@ -125,7 +127,7 @@ function AddArticle(props) {
                 url: servicePath.saveArticle,
                 method: "POST",
                 data: dataProps,
-                withCredentials: true
+                // withCredentials: true
             })
                 .then(
                     res => {
@@ -151,7 +153,7 @@ function AddArticle(props) {
                 url: servicePath.updateArticle,
                 method: "POST",
                 data: dataProps,
-                withCredentials: true
+                // withCredentials: true
             })
                 .then(
                     res => {
@@ -178,7 +180,7 @@ function AddArticle(props) {
         const resType = await axios({
             url: servicePath.getType,
             method: 'GET',
-            withCredentials: true
+            // withCredentials: true
         })
             .then(
                 res => {
@@ -237,7 +239,7 @@ function AddArticle(props) {
                             </Col>
                             <Col span={12}>
                                 <div className="date-select">
-                                    <DatePicker value={showDate} onChange={changeCreateTime} placeholder="请输入发布日期" size="large" />
+                                    <DatePicker format="YYYY-MM-DD" value={showDate ? moment(showDate) : null} onChange={changeCreateTime} placeholder="请输入发布日期" size="large" />
                                 </div>
                             </Col>
                             {/* <Col span={12}>

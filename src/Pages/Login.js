@@ -36,7 +36,7 @@ function Login(props) {
                 username: value.username,
                 password: value.password
             },
-            withCredentials: true
+            // withCredentials: true
         })
             .then(
                 res => {
