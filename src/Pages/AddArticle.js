@@ -110,14 +110,15 @@ function AddArticle(props) {
             message.error('请选择日期')
             return false
         }
-        let dateText = showDate.replace('-', '/');
-
+        console.log(showDate)
+        let dateText = moment(showDate);
+        console.log(dateText)
         let dataProps = {}
 
         dataProps.title = articleTitle;
         dataProps.content = articleContent;
         dataProps.introduce = introducemd;
-        dataProps.createTime = (new Date(dateText).getTime()) / 1000;
+        dataProps.createTime = (new Date(dateText).getTime());
         dataProps.typeId = selectedType;
 
         if (articleId === 0) {
