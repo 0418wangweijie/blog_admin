@@ -61,7 +61,7 @@ function ArticleList(props) {
             title: '发布时间',
             dataIndex: 'createTime',
             render: (createTime) => {
-                return createTime ? moment(createTime).format('YYYY-MM-DD hh:mm') : null;
+                return createTime ? moment(createTime).format('YYYY-MM-DD') : null;
             }
         },
         {

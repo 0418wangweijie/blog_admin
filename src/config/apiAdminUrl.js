@@ -14,6 +14,7 @@ let servicePath = {
     addMusic: ipUrl + '/addMusic',      //保存音乐
     updateMusic: ipUrl + '/updateMusic',   //修改音乐
     deleteMusic: ipUrl + '/deleteMusic/',       //删除音乐
+    statistics: ipUrl + '/statistics',       //文章数据统计
 }
 
 export default servicePath;

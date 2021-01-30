@@ -11,8 +11,6 @@ const { TextArea } = Input;
 
 function AddArticle(props) {
 
-    console.log(props)
-
     const [articleId, setArticleId] = useState(0)  // 文章的ID，如果是0说明是新增加，如果不是0，说明是修改
     const [articleTitle, setArticleTitle] = useState('')   //文章标题
     const [articleContent, setArticleContent] = useState('')  //markdown的编辑内容
@@ -23,8 +21,6 @@ function AddArticle(props) {
     const [updateDate, setUpdateDate] = useState() //修改日志的日期
     const [typeInfo, setTypeInfo] = useState([]) // 文章类别信息
     const [selectedType, setSelectType] = useState() //选择的文章类别
-
-    console.log(typeInfo)
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -110,7 +106,6 @@ function AddArticle(props) {
             message.error('请选择日期')
             return false
         }
-        console.log(showDate)
         let dateText = moment(showDate);
         console.log(dateText)
         let dataProps = {}
@@ -145,7 +140,6 @@ function AddArticle(props) {
                 .catch(
                     error => {
                         setIsLoading(false)
-                        console.log(JSON.stringify(error))
                     }
                 )
         } else {
@@ -177,7 +171,6 @@ function AddArticle(props) {
 
     }
     const fecthType = async () => {
-        console.log(111111111111)
         const resType = await axios({
             url: servicePath.getType,
             method: 'GET',

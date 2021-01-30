@@ -13,6 +13,7 @@ import AddArticle from './AddArticle'
 import ArticleList from './ArticleList'
 import TypeList from './type/index'
 import MusicList from './music/index'
+import Chart from './Chart'
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
@@ -58,12 +59,9 @@ function AdminIndex(props) {
             <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
                 <div className="logo" />
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                    <Menu.Item key="1" icon={<PieChartOutlined />}>
+                    <Menu.Item key="1" icon={<PieChartOutlined />} onClick={() => props.history.push('/index/')}>
                         首页
-            </Menu.Item>
-                    <Menu.Item key="2" icon={<DesktopOutlined />}>
-                        博客
-            </Menu.Item>
+                    </Menu.Item>
                     <SubMenu key="sub1" onClick={handleClickArticle} icon={<FileTextOutlined />} title="文章管理">
                         <Menu.Item key="articleList">文章列表</Menu.Item>
                         <Menu.Item key="addArticle">添加文章</Menu.Item>
@@ -86,7 +84,7 @@ function AdminIndex(props) {
                     </Breadcrumb>
                     <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                         <div >
-                            <Route path='/index/' exact component={AddArticle}></Route>
+                            <Route path='/index/' exact component={Chart}></Route>
                             <Route path='/index/add/' exact component={AddArticle}></Route>
                             <Route path='/index/list/' exact component={ArticleList}></Route>
                             <Route path='/index/type/' exact component={TypeList}></Route>
