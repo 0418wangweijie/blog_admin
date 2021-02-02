@@ -1,10 +1,10 @@
 import { Layout, Menu, Breadcrumb } from 'antd';
 import React, { useState } from 'react';
 import {
-    DesktopOutlined,
+    // DesktopOutlined,
     PieChartOutlined,
-    FileOutlined,
-    SwitcherOutlined,
+    CustomerServiceOutlined,
+    ApartmentOutlined,
     FileTextOutlined,
 } from '@ant-design/icons';
 import '../static/css/AdminIndex.css'
@@ -58,7 +58,7 @@ function AdminIndex(props) {
         <Layout style={{ minHeight: '100vh' }}>
             <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
                 <div className="logo" />
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                <Menu theme="dark" mode="inline">
                     <Menu.Item key="1" icon={<PieChartOutlined />} onClick={() => props.history.push('/index/')}>
                         首页
                     </Menu.Item>
@@ -66,10 +66,10 @@ function AdminIndex(props) {
                         <Menu.Item key="articleList">文章列表</Menu.Item>
                         <Menu.Item key="addArticle">添加文章</Menu.Item>
                     </SubMenu>
-                    <SubMenu key="sub2" icon={<SwitcherOutlined />} onClick={handleClickType} title="类型管理">
+                    <SubMenu key="sub2" icon={<ApartmentOutlined />} onClick={handleClickType} title="类型管理">
                         <Menu.Item key="typeList">类型列表</Menu.Item>
                     </SubMenu>
-                    <SubMenu key="sub3" icon={<SwitcherOutlined />} onClick={handleClickMusic} title="音乐管理">
+                    <SubMenu key="sub3" icon={<CustomerServiceOutlined />} onClick={handleClickMusic} title="音乐管理">
                         <Menu.Item key="musicList">音乐列表</Menu.Item>
                     </SubMenu>
 

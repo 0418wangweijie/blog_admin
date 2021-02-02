@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Row, Col, Space, Popconfirm, message } from 'antd'
+import { Table, Space, Popconfirm, message } from 'antd'
 import axios from 'axios'
 import servicePath from '../config/apiAdminUrl'
 import moment from 'moment'

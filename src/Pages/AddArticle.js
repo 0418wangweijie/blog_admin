@@ -18,7 +18,7 @@ function AddArticle(props) {
     const [introducemd, setIntroducemd] = useState()            //简介的markdown内容
     const [introducehtml, setIntroducehtml] = useState('等待编辑') //简介的html内容
     const [showDate, setShowDate] = useState()   //发布日期
-    const [updateDate, setUpdateDate] = useState() //修改日志的日期
+    // const [updateDate, setUpdateDate] = useState() //修改日志的日期
     const [typeInfo, setTypeInfo] = useState([]) // 文章类别信息
     const [selectedType, setSelectType] = useState() //选择的文章类别
 
@@ -87,7 +87,7 @@ function AddArticle(props) {
             setShowDate(moment(values.createTime))
         }
     }
-    console.log(showDate)
+    console.log(moment(1612108800000).format('YYYY-MM-DD HH:mm'))
     const saveArticle = () => {
         setIsLoading(true)
         if (!selectedType) {
@@ -107,7 +107,7 @@ function AddArticle(props) {
             return false
         }
         let dateText = moment(showDate);
-        console.log(dateText)
+
         let dataProps = {}
 
         dataProps.title = articleTitle;

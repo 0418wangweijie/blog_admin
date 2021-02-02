@@ -6,10 +6,17 @@ import moment from 'moment'
 import { Card } from 'antd'
 
 export default (props) => {
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
+    const [pieData, setPieData] = useState([]);
+
+    console.log(data)
+    console.log(pieData)
 
     useEffect(() => {
-        getStatistics()
+        getStatistics();
+    }, [])
+    useEffect(() => {
+        getPie();
     }, [])
     const getStatistics = () => {
         Axios({
@@ -19,35 +26,18 @@ export default (props) => {
             .then((res) => {
                 setData(res.data.data)
             })
+
     }
 
-    var newdata = [
-        {
-            type: '分类一',
-            value: 27,
-        },
-        {
-            type: '分类二',
-            value: 25,
-        },
-        {
-            type: '分类三',
-            value: 18,
-        },
-        {
-            type: '分类四',
-            value: 15,
-        },
-        {
-            type: '分类五',
-            value: 10,
-        },
-        {
-            type: '其他',
-            value: 5,
-        },
-    ];
-
+    const getPie = () => {
+        Axios({
+            url: servicePath.pie,
+            method: 'GET'
+        })
+            .then((res) => {
+                setPieData(res.data.data)
+            })
+    }
     const config = {
         data: data,
         xField: 'year',
@@ -57,9 +47,31 @@ export default (props) => {
             label: {
                 formatter: function formatter(x) {
                     return x ? moment(x).format('YYYY-MM-DD') : null;
-                }
+                },
             },
+            tickCount: 30,
+            // tickInterval: 20,
             type: 'time'
+        },
+        yAxis: {
+            label: {
+                formatter: function formatter(v) {
+                    return ''.concat(v).replace(/\d{1,3}(?=(\d{3})+$)/g, function (s) {
+                        return ''.concat(s, ',');
+                    });
+                },
+            },
+            autoHide: true,
+            tickCount: 20,
+            // tickInterval: 30,
+        },
+        legend: { position: 'top' },
+        // smooth: true,
+        animation: {
+            appear: {
+                animation: 'path-in',
+                duration: 5000,
+            },
         },
         color: ['#1979C9', '#D62A0D', '#FAA219'],
 
@@ -67,24 +79,28 @@ export default (props) => {
 
     const PieConfig = {
         appendPadding: 10,
-        data: newdata,
+        data: pieData,
         angleField: 'value',
-        colorField: 'type',
+        colorField: 'name',
         radius: '0.9',
         label: {
             type: 'inner',
-            offset: '-30%'
+            offset: '-30%',
+            content: '{value}',
         },
-        content: function content(_ref) {
-            var percent = _ref.percent;
-            return ''.concat(percent * 100, '%');
-        },
+
+        // content: function content(_ref) {
+        //     var percent = _ref.percent;
+        //     return ''.concat(percent * 100, '%');
+        // },
         style: {
             fontSize: 14,
             textAlign: 'center'
         },
         interactions: [{ type: 'element-active' }],
     }
+
+    console.log(PieConfig)
     return (
         <div>
             <Card title="文章访问数量">
