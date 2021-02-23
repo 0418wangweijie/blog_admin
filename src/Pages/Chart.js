@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { Line, Pie } from '@ant-design/charts'
-import Axios from 'axios'
-import servicePath from '../config/apiAdminUrl'
-import moment from 'moment'
-import { Card } from 'antd'
+import React, { useEffect, useState } from 'react';
+import { Line, Pie } from '@ant-design/charts';
+import Axios from 'axios';
+import servicePath from '../config/apiAdminUrl';
+import moment from 'moment';
+import { Card } from 'antd';
 
 export default (props) => {
     const [data, setData] = useState([]);
     const [pieData, setPieData] = useState([]);
 
-    console.log(data)
-    console.log(pieData)
 
     useEffect(() => {
         getStatistics();
@@ -73,7 +71,9 @@ export default (props) => {
                 duration: 5000,
             },
         },
-        color: ['#1979C9', '#D62A0D', '#FAA219'],
+        color: ['#1979C9', '#D62A0D', '#FAA219', '#ffccc7', '#ffbb96', '#ffd591', '#ffd666', '#fff566', '#d3f261',
+            '#95de64', '#5cdbd3', '#69c0ff', '#85a5ff', '#b37feb', '#ff85c0'
+        ],
 
     };
 

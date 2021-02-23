@@ -4,6 +4,7 @@ import axios from 'axios'
 import servicePath from '../../config/apiAdminUrl'
 import AddType from './components/AddType'
 import UpdateType from './components/UpdateType'
+import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 
 export default () => {
 
@@ -60,17 +61,17 @@ export default () => {
             render: (_, record) => {
                 return (
                     <Space>
-                        <a onClick={() => {
+                        <Button type="primary" size="small" onClick={() => {
                             setupdateTypeVisible(true)
                             setTypeValues(record)
-                        }}>修改</a>
+                        }}><EditOutlined />修改</Button>
                         <Popconfirm
                             title="确定要删除这个类型吗？"
                             okText="确定"
                             cancelText="取消"
                             onConfirm={() => onDelete(record._id)}
                         >
-                            <a href="#">删除</a>
+                            <Button type="primary" size="small" danger><DeleteOutlined />删除</Button>
                         </Popconfirm>
                     </Space>
                 )
@@ -98,9 +99,9 @@ export default () => {
                 title="类型列表"
                 extra={<Button type="primary" onClick={() => {
                     setTypeVisible(true)
-                }}>新建类型</Button>}
+                }}><PlusOutlined />新建类型</Button>}
             >
-                <Table key="_id" dataSource={dataSource} columns={columns} />
+                <Table bordered rowKey="_id" dataSource={dataSource} columns={columns} />
 
             </Card>
             {typeVisible ?

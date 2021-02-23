@@ -65,7 +65,8 @@ function AddArticle(props) {
     }
 
     const changeCreateTime = (date, dateString) => {
-        console.log(dateString)
+        console.log(date)
+        console.log(new Date(dateString).getTime())
         setShowDate(dateString)
     }
 
@@ -87,23 +88,37 @@ function AddArticle(props) {
             setShowDate(moment(values.createTime))
         }
     }
-    console.log(moment(1612108800000).format('YYYY-MM-DD HH:mm'))
     const saveArticle = () => {
         setIsLoading(true)
         if (!selectedType) {
             message.error('请选择文章类型')
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000);
             return false
         } else if (!articleTitle) {
             message.error('请输入文章标题')
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000);
             return false
         } else if (!articleContent) {
             message.error('请输入文章内容')
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000);
             return false
         } else if (!introducemd) {
             message.error('请输入简介')
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000);
             return false
         } else if (!showDate) {
             message.error('请选择日期')
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000);
             return false
         }
         let dateText = moment(showDate);

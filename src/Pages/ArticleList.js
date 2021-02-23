@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Space, Popconfirm, message } from 'antd'
+import { Table, Space, Popconfirm, message, Button } from 'antd'
 import axios from 'axios'
 import servicePath from '../config/apiAdminUrl'
+import '../static/css/ArticleList.css'
 import moment from 'moment'
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 function ArticleList(props) {
 
@@ -84,26 +86,27 @@ function ArticleList(props) {
             dataIndex: 'options',
             render: (_, record) => (
                 <Space>
-                    <Popconfirm
-                        title="要将文章删除吗？"
-                        onConfirm={() => onDeleteConfirm(record._id)}
-                        okText="确定"
-                        cancelText="取消"
-                    >
-                        <a href="#">删除</a>
-                    </Popconfirm>
-                    <a onClick={() => {
+                    <Button type="primary" size="small" onClick={() => {
                         props.history.push({
                             pathname: '/index/add',
                             query: {
                                 record
                             }
                         })
-                    }}>修改</a>
+                    }}><EditOutlined />修改</Button>
+                    <Popconfirm
+                        title="要将文章删除吗？"
+                        onConfirm={() => onDeleteConfirm(record._id)}
+                        okText="确定"
+                        cancelText="取消"
+                    >
+                        <Button size="small" type="primary" danger><DeleteOutlined />删除</Button>
+                    </Popconfirm>
+
                 </Space>
             )
         }
     ]
-    return (<Table key="_id" dataSource={list} columns={columns} />)
+    return (<Table bordered justify="center" rowKey="_id" dataSource={list} columns={columns} />)
 }
 export default ArticleList
