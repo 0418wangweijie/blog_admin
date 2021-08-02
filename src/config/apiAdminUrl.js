@@ -1,5 +1,5 @@
 // let ipUrl = 'http://127.0.0.1:7001'
-let ipUrl = 'http://121.196.14.20:7001'
+let ipUrl = 'http://127.0.0.1:7001'
 
 let servicePath = {
     login: ipUrl + '/login',     // 登录接口
