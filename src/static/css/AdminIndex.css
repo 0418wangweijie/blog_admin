@@ -11,3 +11,15 @@
 .site-layout-background {
   background: #fff;
 }
+
+.header-logo {
+  color: #1e90ff;
+  font-size: 1.4rem;
+  text-align: left;
+}
+.header-txt {
+  font-size: 0.6rem;
+  display: inline-block;
+  padding-left: 0.3rem;
+  color: #999;
+}
