@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import marked from "marked";
 import "../static/css/AddArticle.css";
-import { Row, Col, Button, Input, Select, DatePicker, message } from "antd";
+import { Row, Col, Button, Input, Select, DatePicker, message, Upload } from "antd";
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import axios from "axios";
 import servicePath from "../config/apiAdminUrl";
 import moment from "moment";
@@ -19,6 +20,9 @@ function AddArticle(props) {
   // const [updateDate, setUpdateDate] = useState() //修改日志的日期
   const [typeInfo, setTypeInfo] = useState([]); // 文章类别信息
   const [selectedType, setSelectType] = useState(); //选择的文章类别
+  const [imageUrl, setImageUrl] = useState();   //文章封面
+  const [loading, setLoading] = useState(false) //提交图片动态效果
+
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -189,6 +193,17 @@ function AddArticle(props) {
       });
     setTypeInfo(resType);
   };
+  // 上传图片
+  const handleChange = async (info) => {
+    setLoading()
+    console.log(info)
+  }
+  const uploadButton = (
+    <div>
+      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      <div style={{ marginTop: 8 }}>文章封面Upload</div>
+    </div>
+  );
 
   return (
     <div>
@@ -283,6 +298,17 @@ function AddArticle(props) {
                                     <DatePicker placeholder="请输入修改日期" size="large"/>
                                 </div>
                             </Col> */}
+              <br />
+              <Upload
+                name="avatar"
+                listType="picture-card"
+                className="avatar-uploader"
+                showUploadList={false}
+                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                onChange={handleChange}
+              >
+                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+              </Upload>
             </Col>
           </Row>
         </Col>
